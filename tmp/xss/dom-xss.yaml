@@ -18,7 +18,6 @@ file:
       - js
       - ts
       - html
-      - htm
       - php
       - cs
       - rb
@@ -51,4 +50,4 @@ file:
           - 'window\.name'
           - 'document(\.URL|\.referrer|\.documentURI|\.baseURI|\.cookie)'
 
-
+# Enhanced by mp on 2022/09/14
