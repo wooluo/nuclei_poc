@@ -1,0 +1,26 @@
+http:
+- matchers:
+  - condition: or
+    regex:
+    - \d{4}\.\d{2}\.\d{2} \d{2}:\d{2} [A-Z] C:\\
+    - \d{4}\.\d{2}\.\d{2} \d{2}:\d{2} [A-Z] D:\\
+    type: regex
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/ws_ftp.log'
+  - '{{BaseURL}}/WS_FTP.LOG'
+  stop-at-first-match: true
+id: ws-ftp-log
+info:
+  author: Hardik-Solanki
+  metadata:
+    google-query: intitle:"Index of" ws_ftp.log
+    max-request: 2
+    verified: true
+  name: WS FTP File Disclosure
+  severity: low
+  tags: exposure,ftp,logs

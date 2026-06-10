@@ -1,0 +1,37 @@
+http:
+- extractors:
+  - group: 1
+    part: body
+    regex:
+    - alt="Plesk Onyx ([0-9.]+)"
+    type: regex
+  matchers:
+  - part: body
+    type: word
+    words:
+    - alt="Plesk Onyx
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/login_up.php'
+id: plesk-onyx-login
+info:
+  author: dhiyaneshDK,daffainfo
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0.0
+    cwe-id: CWE-200
+  description: Plesk Onyx login panel was detected.
+  metadata:
+    google-query: inurl:login_up.php "Plesk Onyx"
+    max-request: 1
+    shodan-query: http.html:"Plesk Onyx"
+    verified: true
+  name: Plesk Onyx Login Panel - Detect
+  reference:
+  - https://www.exploit-db.com/ghdb/6501
+  severity: info
+  tags: panel,plesk,login,edb

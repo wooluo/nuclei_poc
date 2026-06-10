@@ -1,0 +1,27 @@
+id: axigen-mail-server-detect
+info:
+  author: pikpikcu
+  description: 'Axigen Mail Server was detected.
+
+    '
+  metadata:
+    fofa-query: app="axigen-Mail-Server"
+    max-request: 2
+    shodan-query: product:"Axigen"
+    verified: true
+  name: Axigen Mail Server Detection
+  severity: info
+  tags: network,axigen
+tcp:
+- host:
+  - '{{Hostname}}'
+  - '{{Host}}:25'
+  inputs:
+  - data: '
+
+      '
+  matchers:
+  - type: word
+    words:
+    - Axigen ESMTP
+    - AXIGEN

@@ -1,0 +1,29 @@
+file:
+- extensions:
+  - xml
+  matchers:
+  - negative: true
+    type: word
+    words:
+    - <dnsserver>
+  - condition: and
+    type: word
+    words:
+    - <pfsense>
+    - <system>
+  matchers-condition: and
+id: configure-dns-server
+info:
+  author: pussycat0x
+  description: 'The purpose DNs server is to perform the resolution of system hostnames
+    to Internet Protocol (IP) addresses.
+
+    '
+  metadata:
+    verified: true
+  name: Configure DNS Server
+  reference: 'https://docs.netgate.com/pfsense/en/latest/recipes/dns-over-tls.html
+
+    '
+  severity: info
+  tags: firewall,config,audit,pfsense,file

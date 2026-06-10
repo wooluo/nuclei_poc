@@ -1,0 +1,22 @@
+id: mismatched-ssl-certificate
+info:
+  author: pdteam
+  metadata:
+    max-request: 1
+  name: Mismatched SSL Certificate
+  reference:
+  - https://www.invicti.com/web-vulnerability-scanner/vulnerabilities/ssl-certificate-name-hostname-mismatch/
+  severity: low
+  tags: ssl,mismatched,tls
+ssl:
+- address: '{{Host}}:{{Port}}'
+  extractors:
+  - dsl:
+    - '"CN: " + subject_cn'
+    type: dsl
+  matchers:
+  - condition: and
+    dsl:
+    - mismatched == true
+    - ip != host
+    type: dsl

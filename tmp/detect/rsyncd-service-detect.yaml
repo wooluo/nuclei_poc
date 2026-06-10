@@ -1,0 +1,33 @@
+id: rsyncd-service-detect
+info:
+  author: vsh00t,geeknik
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0.0
+    cwe-id: CWE-200
+  description: 'Rsyncd service was detected.
+
+    '
+  metadata:
+    max-request: 2
+  name: Rsyncd Service - Detect
+  reference:
+  - https://linux.die.net/man/1/rsync
+  severity: info
+  tags: network,rsyncd
+tcp:
+- extractors:
+  - regex:
+    - 'RSYNCD: \d\d.\d'
+    type: regex
+  host:
+  - '{{Hostname}}'
+  - '{{Host}}:873'
+  inputs:
+  - data: "?\r\n"
+  matchers:
+  - condition: and
+    type: word
+    words:
+    - 'RSYNCD: '
+    - 'ERROR: protocol startup error'
