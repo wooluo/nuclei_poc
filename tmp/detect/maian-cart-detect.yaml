@@ -1,26 +1,27 @@
-id: wordpress-directory-listing 2
+id: maian-cart-detect
+
 info:
-  name: Wordpress directory listing
-  author: Manas_Harsh
+  name: Maian Cart Detection
+  author: pdteam
   severity: info
-  tags: wordpress
+  tags: tech,maian
+
 requests:
   - payloads:
       Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
     attack: sniper
     threads: 100
+
     raw:
       - |
-        GET /wp-content/themes/ HTTP/1.1
+        GET /favicon.ico HTTP/1.1
         Host: {{Subdomains}}
         User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
         Accept-Encoding: gzip, deflate
         Accept: */*
+        
     matchers-condition: and
     matchers:
-      - type: status
-        status:
-          - 200
-      - type: word
-        words:
-          - "Index of /"
+      - type: dsl
+        dsl:
+          - "status_code==200 && (\"-498581627\" == mmh3(base64_py(body)))"

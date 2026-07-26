@@ -1,17 +1,20 @@
-id: wpconfig-aws-keys 1
+id: amazon-docker-config
+
 info:
-  name: AWS S3 keys Leak
-  author: r12w4n
-  severity: high
-  tags: aws,s3,wordpress,disclosure
+  name: Dockerrun AWS Configuration Exposure
+  author: pdteam
+  severity: medium
+  tags: config,exposure,aws,devops
+
 requests:
   - payloads:
       Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
     attack: sniper
     threads: 100
+
     raw:
       - |
-        GET /wp-config.php-backup HTTP/1.1
+        GET /Dockerrun.aws.json HTTP/1.1
         Host: {{Subdomains}}
         User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
         Accept-Encoding: gzip, deflate
@@ -19,9 +22,6 @@ requests:
     matchers:
       - type: word
         words:
-          - 'access-key-id'
-          - 'secret-access-key'
-          - 'DB_NAME'
-          - 'DB_PASSWORD'
+          - 'AWSEBDockerrunVersion'
+          - 'containerDefinitions'
         condition: and
-        part: body
